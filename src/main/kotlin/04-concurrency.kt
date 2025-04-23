@@ -7,6 +7,7 @@ import kotlinx.coroutines.*
         2. 统一取消：如果外部协程被取消，`coroutineScope` 内的所有子任务也会立即取消，避免孤儿协程。
         3. 故障隔离：内部任务失败时，`coroutineScope` 会取消其他子任务，并将异常向外传播，避免影响外部不相关任务。
     3. await和join都是挂起函数，用处都是类似的，都可以用来执行某种依赖的顺序操作，只不过join不关心返回结果。
+    4. suspendCancellableCoroutine可以把回调式包成挂起函数的形式。
  */
 fun main(): kotlin.Unit = runBlocking{
 //    //async：asynchronous异步。{}中最后一条表达式的值就是这个 async 任务最终计算出的结果。
