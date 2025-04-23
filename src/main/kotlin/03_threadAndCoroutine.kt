@@ -25,10 +25,16 @@ import kotlinx.coroutines.*
                   源于编译器优化和用户态调度。
  */
 fun main() =  runBlocking {
-    repeat(10){
-        launch{
-            delay(5000)
-            println(".")
-        }
+//    repeat(10){
+//        launch{
+//            delay(5000)
+//            println(".")
+//        }
+//    }
+    val job = launch{
+        delay(1000)
+        println("1:${Thread.currentThread().name}")
     }
+    //因为launch是非阻塞的，主线程会继续向下执行，所以在打印之前就取消了协程任务，打印不会发生
+    job.cancel()
 }
